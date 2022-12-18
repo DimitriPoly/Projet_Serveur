@@ -1,0 +1,25 @@
+﻿@model Projet_Serveur.Models.Produit
+
+@{
+    ViewBag.Title = "Details";
+}
+@*Vue lorsqu'on accède à un détail du produit*@
+<div class="productContainer">
+    <div class="row">
+        <div class="col-lg-6" id="imgContainer">
+            <img class="imgProduit" src="/Images/produit.png" alt="product picture not found"></img>
+        </div>
+        <div class="col-lg-6">
+            <h2>@Html.DisplayFor(model => model.NomProduit)</h2>
+            <p class="prixProduit">@Html.DisplayFor(model => model.Cout) €</p>
+            <p>@Html.DisplayFor(model => model.Description)</p>
+            @*Bouton d'ajout au panier qui ajoute le produit this*@
+            @Html.ActionLink("Ajouter au panier", "AjouterAuPanier", this.Model,
+        htmlAttributes: new { @class = "btn btn-primary", @width = "fit-content" })
+            @Html.ActionLink("Retourner à la liste", "Index", "Produits",
+        htmlAttributes: new { @class = "btn btn-secondary", @width = "fit-content" })
+
+        </div>
+    </div>
+</div>
+

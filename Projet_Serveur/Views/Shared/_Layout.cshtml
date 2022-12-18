@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("BeautySphere", "", "", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*Les différents objets de la barre*@
+                    <li>@Html.ActionLink("Boutique", "", "Produits")</li>
+                    <li>@Html.ActionLink("Notre univers", "", "Univers")</li>
+                    <li>@Html.ActionLink("Accéder à la partie admin", "IndexAdmin", "Produits")</li>
+
+                    <div class="rightItems">
+                    <li>
+                        @using (Html.BeginForm("Index", "Produits"))
+                        {@Html.TextBox("SearchString")<input type="submit" value="Rechercher" />}
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-primary mt-10" data-toggle="modal" data-target="#form" style="margin-left: 10px">
+                            Panier
+                        </button>
+                    </li>
+                    </div>
+
+            </ul>
+        </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - BeautySphere</p>
+            
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+@*La modale du panier*@
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Mon panier</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    @if (Session["panier"] != null)
+                    {
+                        var coutTotal = new float();
+                        coutTotal = 0;
+                        <table id="tableau_modale">
+                            <tr id="entete_tableau_modale">
+                                <th colspan="2">Produit</th>
+                                <th colspan="2" width="50%">Prix</th>
+                            </tr>
+                                @*Affichage de tous les produits du panier*@
+                            @foreach (Projet_Serveur.Models.Produit produit in (List<Projet_Serveur.Models.Produit>)Session["panier"])
+                            {
+                                <tr>
+                                    <td style="width:75px;">
+                                        <img src="/Images/produit.png" width="75" height="75" />
+                                    </td>
+                                    <td>
+                                        @produit.NomProduit
+                                    </td>
+                                    <td>
+                                        @produit.Cout €
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Retirer", "RetirerDuPanier", new { id = produit.ID })
+                                    </td>
+                                </tr>
+                                coutTotal += produit.Cout;
+                            }
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <b>Coût total : @coutTotal €</b>
+                                </td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                    else
+                    {
+                        <span>Votre panier est vide !</span>
+                    }
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    @if (Session["panier"] != null)
+                    {
+                        <button type="submit" class="btn btn-primary">Procéder au paiement</button>
+
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary">Continuer mes achats</button>
+
+                    }
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

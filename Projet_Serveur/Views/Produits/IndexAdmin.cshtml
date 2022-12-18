@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Projet_Serveur.Models.Produit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gérer les produits</h2>
+@*Vue dans laquelle on gère les produits*@
+
+<p>
+    @Html.ActionLink("Ajouter un produit", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Rechercher: @Html.TextBox("SearchString")
+        <input type="submit" value="Rechercher" />
+    </p>
+}
+
+
+    @foreach (var item in Model)
+    {
+        <div>
+            <h4>@item.NomProduit </h4>
+            @Html.ActionLink("Modifier", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.ID })
+            
+        </div>
+    }
+
+

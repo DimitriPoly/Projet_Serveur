@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Projet_Serveur.Models.Produit>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="container">
+@*On gère l'affichage de la div de feedback si le tempdata message n'est pas null*@
+    @if (TempData["message"] != null)
+    {
+        <div id="check"></div>
+        <script>
+                    document.getElementById("check").innerHTML = ('@TempData["message"]');
+                    //ADD THIS CODE
+                    setTimeout(function () {
+                        document.getElementById("check").innerHTML = "";
+                    }, 3000);</script>
+    }
+    <h1 class="selectedCat">Tous nos produits</h1>
+
+    <div class="col-md-3 filterBox">
+        <h2>Filtres</h2>
+        <h3>Catégorie</h3>
+            @*Gestion des filtres*@
+        @using (Html.BeginForm("Index", "Produits"))
+        {
+
+
+            <label class="container">
+                <input type="radio" id="SearchString" name="SearchString" value="visage">
+                Visage
+            </label>
+
+            <label class="container">
+                <input type="radio" id="SearchString" name="SearchString" value="Corps">
+                Corps
+            </label>
+
+            <label class="container">
+                <input type="radio" id="SearchString" name="SearchString" value="Cheveux">
+                Cheveux
+            </label>
+            <input type="submit" value="Filtrer" class="btn btn-primary" />
+        }
+
+
+    </div>
+@*On affiche chaque produit*@
+    @foreach (var item in Model)
+    {
+        <div class="templateProduct col-md-3 col-lg-offset-0.5">
+            <img src="/Images/produit.png" width="150" height="150" />
+            <h3>
+                @Html.ActionLink(item.NomProduit, "Details", new { id = item.ID },
+             htmlAttributes: new { @style = "color:black" })
+        </h3>
+        <p>
+            @Html.DisplayFor(modelItem => item.Cout) € - @Html.ActionLink("Ajouter au panier", "AjouterAuPanier", item,
+htmlAttributes: new { @style = "color:black" })
+        </p>
+    </div>
+}
+
+</div>

@@ -1,0 +1,146 @@
+﻿body {
+    font-family:System-ui;
+}
+
+.selectedCat{
+    text-align:center;
+    font-family:system-ui;
+    margin:60px;
+}
+#check {
+    text-align: center; 
+    font-family: system-ui;
+    font-size: 18px;
+    margin: 20px;
+    background-color: lavender;
+    border-radius: 5px;
+    box-shadow: 1px 4px 15px -9px;
+}
+
+.filterBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 1px 4px 15px -9px;
+    padding-bottom: 20px;
+}
+
+.templateProduct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.priceField{
+    width:50px;
+}
+
+.bg-primary {
+    border-radius: 10px;
+    box-shadow: 1px 4px 15px -9px;
+    margin-top: 2em;
+    padding: 15px;
+}
+
+h1, .h1 {
+    font-size: 36px;
+    margin-left: 10px;
+}
+
+.rightItems{
+    display:flex;
+    align-items:center;
+    margin-top:10px;
+    margin-left:630px;
+}
+
+#tableau_modale{
+    width:100%;
+    box-shadow: 1px 4px 15px -9px;
+    border-radius: 10px;
+}
+#tableau_modale td{
+    padding: 8px;
+    border-top: 1px solid lightgray;
+}
+#tableau_modale th{
+    height: 50px;
+    font-size: 16px;
+    background-color: lavender;
+    padding: 8px;
+}
+.modal-header{
+    text-align:center;
+}
+
+h3, .h3{
+    text-align: center;
+}
+
+.universHeader {
+    background-image: url("/Images/boutique.png");
+    background-color: rgba(246, 242, 255, 0.3);
+    height: 300px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#universTitre{
+    font-size: 80px;
+    color:lavenderblush;
+}
+
+#confiance div {
+    box-shadow: 1px 4px 15px -9px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+.navbar-inverse .navbar-brand {
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.navbar-inverse {
+    background-color: #aea1db;
+    border: none;
+    box-shadow: 1px 4px 15px -9px;
+}
+.productContainer {
+    margin-top: 80px;
+    margin-bottom: 200px;
+}
+
+#imgContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.imgProduit {
+    box-shadow: 1px 4px 15px -9px;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #dccef1;
+    border: none;
+}
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: #594970;
+        border-color: #594970;
+    }
+    .btn-secondary:focus {
+        color: #fff;
+        background-color: #594970;
+        border-color: #594970;
+    }
+
+.prixProduit{
+    font-weight: 500;
+    font-size:20px;
+}
